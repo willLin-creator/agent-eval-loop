@@ -11,7 +11,9 @@ Agent and judge are both tests/fake_cmd.py, selected by AGENT_CMD / JUDGE_CMD an
 FAKE_MODE. No network, no real CLI. `LIVE=1 python3 -m unittest tests.test_eval_loop.LiveTests`
 runs the one real end-to-end scenario plus calibration against the configured CLI.
 """
+import contextlib
 import hashlib
+import io
 import json
 import os
 import shutil
@@ -101,7 +103,9 @@ class TestLoadAndCheck(TmpCorpusTest):
     def test_empty_corpus_is_ok(self):
         c = el.load_corpus(mk_corpus(self.tmp), TODAY)
         self.assertEqual((len(c.rules), len(c.cases), c.errors), (0, 0, []))
-        self.assertEqual(el.check(c), 0)
+        with contextlib.redirect_stdout(io.StringIO()) as out:
+            self.assertEqual(el.check(c), 0)
+        self.assertIn("ok: 0 rules", out.getvalue())
 
     def test_missing_frontmatter_collected(self):
         root = mk_corpus(self.tmp)
@@ -109,7 +113,9 @@ class TestLoadAndCheck(TmpCorpusTest):
         c = el.load_corpus(root, TODAY)
         self.assertEqual(len(c.errors), 1)
         self.assertIsInstance(c.errors[0], el.SchemaError)
-        self.assertEqual(el.check(c), 1)
+        with contextlib.redirect_stderr(io.StringIO()) as err:
+            self.assertEqual(el.check(c), 1)
+        self.assertIn("SchemaError", err.getvalue())
 
     def test_dangling_rule_collected_and_case_still_loaded(self):
         root = mk_corpus(self.tmp, cases=[{"date": "2026-08-01", "rule": "ghost"}])
