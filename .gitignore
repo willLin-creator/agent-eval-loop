@@ -1,0 +1,30 @@
+# =====================================================================
+#  SECRETS. Never commit.
+# =====================================================================
+*token*.json
+*cred*.json
+*secret*
+*.key
+*.pem
+.env
+.env.*
+!.env.example
+
+# =====================================================================
+#  YOUR REAL CORPUS. Stays on your machine only.
+#  The repo ships example-corpus/ as a template. Keep your own rules,
+#  cases, and scenarios in `corpus/` (or point AGENT_EVAL_DIR elsewhere)
+#  and it will be ignored. Replay runs land in runs/ and are ignored too,
+#  except the committed calibration results under example-corpus/.
+# =====================================================================
+/corpus/
+/private-corpus/
+/runs/
+.private-terms
+
+# =====================================================================
+#  Cruft.
+# =====================================================================
+__pycache__/
+*.pyc
+.DS_Store
