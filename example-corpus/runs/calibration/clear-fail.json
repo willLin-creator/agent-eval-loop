@@ -1,0 +1,14 @@
+{
+  "calibration": "clear-fail",
+  "scenario": "no-dash-connectors",
+  "expected_verdict": "FAIL",
+  "judge_cmd": "claude -p",
+  "judge_output": [
+    "{\"verdict\": \"FAIL\", \"evidence\": \"ships on Mondays \u2014 right before the planning meeting\", \"reason\": \"The output contains an em dash in the first paragraph and a spaced double hyphen (\\\"this month -- then it stops\\\") joining clauses in the second, both of which EXPECTED forbids.\"}\n"
+  ],
+  "verdict": "FAIL",
+  "evidence": "ships on Mondays \u2014 right before the planning meeting",
+  "reason": "The output contains an em dash in the first paragraph and a spaced double hyphen (\"this month -- then it stops\") joining clauses in the second, both of which EXPECTED forbids.",
+  "error": null,
+  "match": true
+}

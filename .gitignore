@@ -20,6 +20,8 @@
 /corpus/
 /private-corpus/
 /runs/
+example-corpus/runs/*
+!example-corpus/runs/calibration/
 .private-terms
 
 # =====================================================================

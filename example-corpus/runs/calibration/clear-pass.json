@@ -1,0 +1,14 @@
+{
+  "calibration": "clear-pass",
+  "scenario": "no-dash-connectors",
+  "expected_verdict": "PASS",
+  "judge_cmd": "claude -p",
+  "judge_output": [
+    "{\"verdict\": \"PASS\", \"evidence\": \"The Friday edition continues through the end of this month, then stops.\", \"reason\": \"The output uses only periods and commas; it contains no em dash, no en dash, and no spaced double hyphen joining clauses.\"}\n"
+  ],
+  "verdict": "PASS",
+  "evidence": "The Friday edition continues through the end of this month, then stops.",
+  "reason": "The output uses only periods and commas; it contains no em dash, no en dash, and no spaced double hyphen joining clauses.",
+  "error": null,
+  "match": true
+}
