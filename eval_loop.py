@@ -22,6 +22,8 @@ import tempfile
 from datetime import date, datetime, timedelta
 from pathlib import Path
 
+__version__ = "0.1.0"
+
 DEFAULTS = {"promote_n": 3, "promote_window_days": 90, "relax_window_days": 180}
 TIERS = ["recall", "pinned", "hook"]          # ascending enforcement
 LOW_N = 3                                      # below this a rate is flagged low-confidence
@@ -655,6 +657,7 @@ def _today(value):
 def build_parser():
     p = argparse.ArgumentParser(prog="eval_loop.py", description=__doc__,
                                 formatter_class=argparse.RawDescriptionHelpFormatter)
+    p.add_argument("--version", action="version", version="agent-eval-loop " + __version__)
     p.add_argument("--dir", default=os.environ.get("AGENT_EVAL_DIR", "example-corpus"),
                    help="corpus directory (default: $AGENT_EVAL_DIR or example-corpus)")
     p.add_argument("--today", help="YYYY-MM-DD; fixes every window for reproducible output")

@@ -20,7 +20,7 @@ git clone https://github.com/willLin-creator/agent-eval-loop && cd agent-eval-lo
 python3 eval_loop.py --dir example-corpus --today 2026-08-27 check      # exits 1: one dangling case, on purpose
 python3 eval_loop.py --dir example-corpus --today 2026-08-27 score
 python3 eval_loop.py --dir example-corpus --today 2026-08-27 graduate
-python3 -m unittest                                                      # 63 tests, no network
+python3 -m unittest                                                      # 64 tests, no network
 ```
 
 `graduate` on the example corpus emits one of each verdict:
@@ -127,11 +127,20 @@ tests/                   unittest suite; LIVE=1 adds one real end-to-end run
 TODOS.md                 what was left out of v0.1 and why
 ```
 
-## Background
+## Provenance
 
-This is an extraction, not a design exercise. The hats, the protocol, and the tier model came out of
-months of running an AI chief-of-staff on real work and being corrected by it daily. The
-correction log that made the scorer obvious had a hundred entries before anyone called it a
-dataset. What is here is the shape that survived, with the private specifics removed.
+This is a genericized split-out of one piece of a private AI operating system I have built, refined,
+and relied on daily for **3,000+ hours** of real work. It is an extraction, not a design exercise:
+the hats, the protocol, and the tier model came out of running an AI chief-of-staff on real work and
+being corrected by it daily. The correction log that made the scorer obvious had a hundred entries
+before anyone called it a dataset. The public repository is a fresh extraction with every personal and
+company detail removed, so its commit history is recent. **The loop it is distilled from is not.**
+What is here is the shape that survived, with the private specifics removed.
+
+Sibling extractions from the same system: [ai-chief-of-staff](https://github.com/willLin-creator/ai-chief-of-staff)
+(the operating system itself; its `hooks/` are where a promoted rule goes),
+[agent-memory-vault](https://github.com/willLin-creator/agent-memory-vault) (the memory layer), and
+[agent-harness](https://github.com/willLin-creator/agent-harness) (the engineering loop, the
+evaluator half for code). Each works alone.
 
 MIT.

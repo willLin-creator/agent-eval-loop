@@ -492,5 +492,17 @@ class LiveTests(unittest.TestCase):
         self.assertTrue(all(r["match"] for r in results), [(r["calibration"], r["verdict"], r["reason"]) for r in results])
 
 
+
 if __name__ == "__main__":
     unittest.main()
+
+
+class VersionTests(unittest.TestCase):
+    def test_version_flag_prints_the_module_version(self):
+        import subprocess, sys, pathlib
+        root = pathlib.Path(__file__).resolve().parents[1]
+        out = subprocess.run([sys.executable, str(root / "eval_loop.py"), "--version"],
+                             capture_output=True, text=True)
+        self.assertEqual(out.returncode, 0)
+        self.assertIn("agent-eval-loop 0.1.0", out.stdout + out.stderr)
+
